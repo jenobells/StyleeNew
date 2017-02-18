@@ -49,6 +49,31 @@ app.controller("cameraController", function($scope) {
   $scope.styled = false;
   $scope.styleMe = function() {
     $scope.styled = true;
-    $scope.randomNumber = Math.floor((Math.random()*9)+1);
+    $scope.randomTop = Math.floor((Math.random()*8)+1);
+    $scope.randomBottom = Math.floor((Math.random()*6)+1);
+  };
+
+  var localStyles = localStorage.getItem('savedStyles');
+  if (!localStyles) {
+    $scope.localStyles = [];
+  } else {
+    $scope.localStyles = JSON.parse(localStyles);
   }
+
+  $scope.saveStyle = function() {
+    $scope.localStyles.push({top: $scope.randomTop, bottom: $scope.randomBottom});
+
+    localStorage.setItem('savedStyles', JSON.stringify($scope.localStyles));
+  };
+});
+
+
+app.controller("savedStylesController", function($scope) {
+  var localStyles = localStorage.getItem('savedStyles');
+  if (!localStyles) {
+    $scope.localStyles = [];
+  } else {
+    $scope.localStyles = JSON.parse(localStyles);
+  }
+
 });

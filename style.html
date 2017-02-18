@@ -83,7 +83,7 @@
               </li>
             </ul>
 
-            <button class="btn" ng-click="styleMe()">Style Me!</button>
+            <button class="btn" ng-click="styleMe()" ng-show="photos.length > 2">Style Me!</button>
           </div>
 
           <div class="col-md-8" ng-show="styled">
@@ -91,63 +91,32 @@
             <center>
               <h2 class="title">Recommendations</h2>
             </center>
-            <div class="col-md-4">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
               <ul class="features-left">
                 <li>
-                  <i class="fa fa-chevron-left fa-5" aria-hidden="true"></i>
-                  <h3>Top</h3>
-                  <p>Previous: Nike</p>
-                  <p>200.00 PHP</p>
+                  <img src="images/recommendations/top/{{randomTop}}.jpg" class="img-responsive center-block" alt="">
                 </li>
               </ul>
             </div>
-            <div class="col-md-4">
-              <ul class="features-left">
-                <li>
-                  <img src="images/shop/{{randomNumber}}.jpg" class="img-responsive center-block" alt="">
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <ul class="features-right">
-                <li>
-                  <i class="fa fa-chevron-right fa-5" aria-hidden="true"></i>
-                  <h3>Top</h3>
-                  <p>Next: Levi's</p>
-                  <p>2200.00 PHP</p>
-                </li>
-              </ul>
+            <div class="col-md-3">
             </div>
 
             <div class="clearfix"></div>
 
-            <div class="space90"></div>
-            <div class="col-md-4">
+            <div class="space50"></div>
+
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
               <ul class="features-left">
                 <li>
-                  <i class="fa fa-chevron-left fa-5" aria-hidden="true"></i>
-                  <h3>Bottom</h3>
-                  <p>Previous: Nike</p>
-                  <p>200.00 PHP</p>
+                  <img src="images/recommendations/bottoms/{{randomBottom}}.jpg" class="img-responsive center-block" alt="">
                 </li>
               </ul>
             </div>
-            <div class="col-md-4">
-              <ul class="features-left">
-                <li>
-                  <img src="images/shop/{{randomNumber - 1 || randomNumber + 1}}.jpg" class="img-responsive center-block" alt="">
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <ul class="features-right">
-                <li>
-                  <i class="fa fa-chevron-right fa-5" aria-hidden="true"></i>
-                  <h3>Bottom</h3>
-                  <p>Next: Levi's</p>
-                  <p>2200.00 PHP</p>
-                </li>
-              </ul>
+            <div class="col-md-3">
             </div>
 
             <div class="clearfix"></div>
@@ -160,7 +129,8 @@
             <div class="col-md-4">
               <ul class="features-left">
                 <li>
-                  <button class="btn btn-warning">Save</button><button class="btn btn-success">Purchase</button>
+                  <button class="btn btn-warning" ng-click="saveStyle()">Save</button>&nbsp;&nbsp;
+                  <button class="btn btn-success">Purchase</button>
                 </li>
               </ul>
             </div>
