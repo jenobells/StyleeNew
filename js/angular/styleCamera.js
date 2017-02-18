@@ -22,7 +22,7 @@ app.controller("cameraController", function($scope) {
 
   $scope.takePhoto = function() {
     // Elements for taking the snapshot
-    $scope.context = canvas.getContext("2d");
+    $scope.context = $scope.canvas.getContext("2d");
     $scope.video = document.getElementById("video");
 
     $scope.canvas.width = $scope.video.videoWidth;
@@ -38,5 +38,47 @@ app.controller("cameraController", function($scope) {
        transform: scale(-1, 1); \
        filter: FlipH; \
        width: 100%";
+  };
+
+  $scope.clearPhotos = function(){
+    $scope.photos = [];
+    $scope.context.clearRect(0, 0, $scope.canvas.width, $scope.canvas.height);
+    $scope.styled = false;
   }
+
+  $scope.styled = false;
+  $scope.styleMe = function() {
+    $scope.styled = true;
+    $scope.randomTop = Math.floor((Math.random()*10)+1);
+    $scope.randomBottom = Math.floor((Math.random()*8)+1);
+  };
+
+  var localStyles = localStorage.getItem('savedStyles');
+  if (!localStyles) {
+    $scope.localStyles = [];
+  } else {
+    $scope.localStyles = JSON.parse(localStyles);
+  }
+
+  $scope.saveStyle = function() {
+    $scope.localStyles.push({top: $scope.randomTop, bottom: $scope.randomBottom});
+
+    localStorage.setItem('savedStyles', JSON.stringify($scope.localStyles));
+  };
+});
+
+app.controller("savedStylesController", function($scope) {
+  var localStyles = localStorage.getItem('savedStyles');
+  if (!localStyles) {
+    $scope.localStyles = [];
+  } else {
+    $scope.localStyles = JSON.parse(localStyles);
+  }
+
+  $scope.clearedStyles = false;
+  $scope.clearStyles = function() {
+    $scope.clearedStyles = true;
+    $scope.localStyles = [];
+    localStorage.setItem('savedStyles', '[]');
+  };
 });

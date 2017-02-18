@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="js/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="css/style.css">
+
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -34,7 +35,7 @@
     <script src="js/angular.min.js"></script>
     <script src="js/angular/styleCamera.js"></script>
   </head>
-  <body id="header6">
+  <body id="header6" ng-app="styleCamera" ng-controller="cameraController">
     <div id="page-top"></div>
     <div class="outer-wrapper">
       <div class="header-wrap">
@@ -52,11 +53,9 @@
               </div>
               <div id="navbar-collapse-1" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                  <li class="page-scroll"><a href="#page-top">Home</a></li>
-                  <li class="page-scroll"><a href="#1">About Us</a></li>
-                  <li class="page-scroll"><a href="#2">Discover</a></li>
-                  <li class="page-scroll"><a href="#3">My Styles</a></li>
-                  <li class="page-scroll"><a href="#7">Contact</a></li>
+                  <li class="page-scroll"><a href="index.html">Home</a></li>
+						<li class="page-scroll"><a href="style.html">Style</a></li>
+						<li class="page-scroll"><a href="savedstyles.html">My Styles</a></li>
                 </ul>
               </div>
             </div>
@@ -68,89 +67,108 @@
       <div class="container padding70" >
         <div class="text-center space40" id="4">
           <h2 class="title uppercase">Style!</h2>
+          <h5 class="title">
+            <span ng-show="localStyles.length > 0">
+              You have {{localStyles.length}} style{{localStyles.length > 1 ? 's' : ''}} saved<br>
+            </span>
+          </h5>
+          <p>
+            <center><a href="/StyleeNew/savedstyles.html"><button style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
+							color: #fff;
+							text-transform: uppercase;
+							border: none;
+							background:#000;
+							font-size: 12px;
+							letter-spacing: 3px;
+							font-family: Montserrat;
+							border-radius: 0px;
+							display: table;
+							transition: .4s;
+							;"
+							 border="0">View Saved Styles</button></a></center>
+          </p>
+
         </div>
         <div class="row">
           <div class="col-xs-3">
-            <div class="space90"></div>
-            <div ng-app="styleCamera" ng-controller="cameraController">
-              <ul class="features-left">
-                <h2>Photos</h2>
-                <video id="video" width="100%" autoplay ng-click="takePhoto()"></video>
-                <canvas id="canvas"></canvas>
-
-                <li ng-repeat="photo in photos track by $index">
-                  <img src="{{photo}}" style="width: 100%;transform: scale(-1, 1)" ng-show="$index !== 0">
-                  <div class="space10"></div>
-                </li>
-
-                <li id="style"><button class="btn">Style Me!</button></li>
-              </ul>
-            </div>
+            <ul class="features-left">
+              <h2>Photos </h2>
+                 <a href="#" ng-click="clearPhotos()"><button style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
+							color: #fff;
+							text-transform: uppercase;
+							border: none;
+							background:#000;
+							font-size: 12px;
+							letter-spacing: 3px;
+							font-family: Montserrat;
+							border-radius: 0px;
+							display: table;
+							transition: .4s;
+							;"
+							 border="0">Clear</button></a>&nbsp;
+              <video id="video" width="100%" autoplay ng-click="takePhoto()"></video>
+              <canvas id="canvas"></canvas>
+                
+               
+                
+              <li ng-repeat="photo in photos track by $index">
+                <img src="{{photo}}" style="width: 100%;transform: scale(-1, 1)" ng-show="$index !== 0">
+                <div class="space10"></div>
+              </li>
+            </ul>
+              
+            <button style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
+							color: #fff;
+							text-transform: uppercase;
+							border: none;
+							background:#000;
+							font-size: 12px;
+							letter-spacing: 3px;
+							font-family: Montserrat;
+							border-radius: 0px;
+							display: table;
+							transition: .4s;
+							;"
+							 border="0" ng-click="styleMe()" ng-show="photos.length > 2">Style Me!</button>
+              
+              
+              
           </div>
-          <div class="col-md-8">
-            <div class="space90"></div>
+
+          <div class="col-md-8" ng-show="styled">
             <center>
               <h2 class="title">Recommendations</h2>
             </center>
-            <div class="col-md-4">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
               <ul class="features-left">
                 <li>
-                  <i class="fa fa-chevron-left fa-5" aria-hidden="true"></i>
-                  <h3>Top</h3>
-                  <p>Previous: Nike</p>
-                  <p>200.00 PHP</p>
+                  <img src="images/recommendations/top/{{randomTop}}.jpg" class="img-responsive center-block" alt="">
                 </li>
               </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="space50"></div>
+
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
               <ul class="features-left">
                 <li>
-                  <img src="images/shop/1.jpg" class="img-responsive center-block" alt="">
+                  <img src="images/recommendations/bottoms/{{randomBottom}}.jpg" class="img-responsive center-block" alt="">
                 </li>
               </ul>
             </div>
-            <div class="col-md-4">
-              <ul class="features-right">
-                <li>
-                  <i class="fa fa-chevron-right fa-5" aria-hidden="true"></i>
-                  <h3>Top</h3>
-                  <p>Next: Levi's</p>
-                  <p>2200.00 PHP</p>
-                </li>
-              </ul>
+            <div class="col-md-3">
             </div>
-          </div>
-          <div class="col-md-8">
-            <div class="space90"></div>
-            <div class="col-md-4">
-              <ul class="features-left">
-                <li>
-                  <i class="fa fa-chevron-left fa-5" aria-hidden="true"></i>
-                  <h3>Bottom</h3>
-                  <p>Previous: Nike</p>
-                  <p>200.00 PHP</p>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <ul class="features-left">
-                <li>
-                  <img src="images/shop/1.jpg" class="img-responsive center-block" alt="">
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <ul class="features-right">
-                <li>
-                  <i class="fa fa-chevron-right fa-5" aria-hidden="true"></i>
-                  <h3>Bottom</h3>
-                  <p>Next: Levi's</p>
-                  <p>2200.00 PHP</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-8">
+
+            <div class="clearfix"></div>
+
             <div class="space90"></div>
             <div class="col-md-4">
               <ul class="features-left">
@@ -159,9 +177,40 @@
             <div class="col-md-4">
               <ul class="features-left">
                 <li>
-                  <button class="btn btn-warning">Save</button><button class="btn btn-success">Purchase</button>
+                    
+                  <button style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
+							color: #fff;
+							text-transform: uppercase;
+							border: none;
+							background:#000;
+							font-size: 12px;
+							letter-spacing: 3px;
+							font-family: Montserrat;
+							border-radius: 0px;
+							display: table;
+							transition: .4s;
+							;"
+							 border="0" ng-click="saveStyle()">Save</button>&nbsp;&nbsp;
+                  <a href="savedstyles.html">
+                    <button style="z-index: 12; max-width: auto; max-height: auto; white-space: nowrap;padding:15px 28px;
+							color: #fff;
+							text-transform: uppercase;
+							border: none;
+							background:#000;
+							font-size: 12px;
+							letter-spacing: 3px;
+							font-family: Montserrat;
+							border-radius: 0px;
+							display: table;
+							transition: .4s;
+							;"
+							 border="0">Purchase</button>
+                  </a>
                 </li>
               </ul>
+              <p class="uppercase">
+                <br> You have {{localStyles.length}} style{{localStyles.length > 1 ? 's' : ''}} saved<br>
+              </p>
             </div>
             <div class="col-md-4">
               <ul class="features-right">
@@ -171,7 +220,53 @@
         </div>
       </div>
     </div>
-    </div>
+  </body>
+    
+    <footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<h4 class="space30">About us</h4>
+			    <img src="images/basic/logo-black.png" class="img-responsive space20" width="262" alt=""/>
+					<p>Stylee is an online e-commerce wardrobe that analyzes your clothing style patterns.  With the data that Stylee learns, it will recommend different set of clothings independently from various brands which users can purchase</p>
+				</div>
+				<div class="col-md-3">
+					<h4 class="space30">Contact</h4>
+			         <ul class="c-info">
+                         <li><i class="fa fa-user"></i> Jeno Panganiban
+						</li>
+						<li><i class="fa fa-map-marker"></i> 2401 Tafe Avenue<br>Manila<br>Philippines
+						</li>
+						
+						<li><i class="fa fa-phone"></i> (+63) 916 590 6524</li>
+						<li><i class="fa fa-envelope-o"></i> panganibanjeno@gmail.com</li>
+						<li><i class="fa fa-skype"></i> jenobells</li>
+					</ul>
+					<div class="clearfix space10"></div>
+				</div>
+                <div class="col-md-3">
+					<h4 class="space30"></h4>
+			         <ul class="c-info">
+                         <li><i class="fa fa-user"></i> Kevin Motas
+						</li>
+						<li><i class="fa fa-map-marker"></i> 2401 Tafe Avenue<br>Manila<br>Philippines
+						</li>
+						
+						<li><i class="fa fa-phone"></i> (+63) 915 623 5896</li>
+						<li><i class="fa fa-envelope-o"></i> kevmotas@gmail.com</li>
+						<li><i class="fa fa-skype"></i> kevmotas</li>
+					</ul>
+					<div class="clearfix space10"></div>
+				</div>
+				<div class="col-md-3">
+					<h4 class="space30">Flickr</h4>
+				  <ul id="flickr" class="thumbs"></ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <!-- Plugins -->
@@ -197,5 +292,4 @@
     <script src="js/gmaps/greyscale.js"></script>
 
     <script src="js/main.js"></script>
-  </body>
 </html>
