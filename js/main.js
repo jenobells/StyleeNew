@@ -301,7 +301,7 @@
 
     });
 
-    // Skills 
+    // Skills
     $('#skills').appear(function() {
         $(".progress-scale div").removeClass("no-width-skills");
     }, {
@@ -344,7 +344,7 @@
         autoHeight: true
     });
 
-    // BLOG SLIDER	  
+    // BLOG SLIDER
     $("#blog-slider").owlCarousel({
 
         navigation: true, // Show next and prev buttons
@@ -397,7 +397,7 @@
 
     });
 
-    // QUOTE CAROUSEL  
+    // QUOTE CAROUSEL
 
     var owl = $("#home-quote");
 
@@ -550,7 +550,7 @@ $(".ss-close").click(function() {
     enabled:true
   }
     });
-  
+
 
 		// SETTINGS PANEL
 
@@ -561,14 +561,14 @@ $(".ss-close").click(function() {
 		$('.switch-handle').on('click', function() {
 			$(this).toggleClass('active');
 			$('.outer-wrapper').toggleClass('boxed');
-			
+
 		});
 
 		$('.bg-list div').on('click', function() {
 			if ($(this).hasClass('active')) return false;
 			if(!$('.switch-handle').hasClass('active')) $('.switch-handle').trigger('click');
 
-			$(this).addClass('active').siblings().removeClass('active');    
+			$(this).addClass('active').siblings().removeClass('active');
 			var cl = $(this).attr('class');
 			$('body').attr('class', cl);
 		});
@@ -577,8 +577,8 @@ $(".ss-close").click(function() {
 			if ($(this).hasClass('active')) return false;
 
 			$('link.color-scheme-link').remove();
-			
-			$(this).addClass('active').siblings().removeClass('active');    
+
+			$(this).addClass('active').siblings().removeClass('active');
 			var src 		= $(this).attr('data-src'),
 				colorScheme = $('<link class="color-scheme-link" rel="stylesheet" />');
 
@@ -590,7 +590,7 @@ $(".ss-close").click(function() {
 })(jQuery); // End of use strict
 
 
-  
+
 
 // slider
 $("#sliderRange")
@@ -751,7 +751,7 @@ $(window).load(function() {
 			return false;
 
 		});
-	
+
 //preloader /
 $(document).ready(function () {
 
@@ -760,7 +760,7 @@ $(document).ready(function () {
     $('.preloader').delay(400).fadeOut(500);
   })
 
-})	
+})
 
 $(document).ready(function() {
 	$(".fancybox-button").fancybox({
