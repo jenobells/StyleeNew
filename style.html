@@ -71,7 +71,6 @@
         </div>
         <div class="row">
           <div class="col-xs-3">
-            <div class="space90"></div>
             <ul class="features-left">
               <h2>Photos <a href="#" ng-click="clearPhotos()"><small>clear</small></a></h2>
               <video id="video" width="100%" autoplay ng-click="takePhoto()"></video>
@@ -87,7 +86,6 @@
           </div>
 
           <div class="col-md-8" ng-show="styled">
-            <div class="space90"></div>
             <center>
               <h2 class="title">Recommendations</h2>
             </center>
@@ -130,7 +128,9 @@
               <ul class="features-left">
                 <li>
                   <button class="btn btn-warning" ng-click="saveStyle()">Save</button>&nbsp;&nbsp;
-                  <button class="btn btn-success">Purchase</button>
+                  <a href="/savedstyles.html">
+                    <button class="btn btn-success">Purchase</button>
+                  </a>
                 </li>
               </ul>
             </div>

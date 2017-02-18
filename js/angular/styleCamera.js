@@ -76,4 +76,10 @@ app.controller("savedStylesController", function($scope) {
     $scope.localStyles = JSON.parse(localStyles);
   }
 
+  $scope.clearedStyles = false;
+  $scope.clearStyles = function() {
+    $scope.clearedStyles = true;
+    $scope.localStyles = [];
+    localStorage.setItem('savedStyles', '[]');
+  };
 });
