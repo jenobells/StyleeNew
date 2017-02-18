@@ -49,8 +49,8 @@ app.controller("cameraController", function($scope) {
   $scope.styled = false;
   $scope.styleMe = function() {
     $scope.styled = true;
-    $scope.randomTop = Math.floor((Math.random()*8)+1);
-    $scope.randomBottom = Math.floor((Math.random()*6)+1);
+    $scope.randomTop = Math.floor((Math.random()*10)+1);
+    $scope.randomBottom = Math.floor((Math.random()*8)+1);
   };
 
   var localStyles = localStorage.getItem('savedStyles');
