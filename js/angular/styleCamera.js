@@ -67,7 +67,6 @@ app.controller("cameraController", function($scope) {
   };
 });
 
-
 app.controller("savedStylesController", function($scope) {
   var localStyles = localStorage.getItem('savedStyles');
   if (!localStyles) {
