@@ -22,7 +22,7 @@ app.controller("cameraController", function($scope) {
 
   $scope.takePhoto = function() {
     // Elements for taking the snapshot
-    $scope.context = canvas.getContext("2d");
+    $scope.context = $scope.canvas.getContext("2d");
     $scope.video = document.getElementById("video");
 
     $scope.canvas.width = $scope.video.videoWidth;
@@ -38,5 +38,17 @@ app.controller("cameraController", function($scope) {
        transform: scale(-1, 1); \
        filter: FlipH; \
        width: 100%";
+  };
+
+  $scope.clearPhotos = function(){
+    $scope.photos = [];
+    $scope.context.clearRect(0, 0, $scope.canvas.width, $scope.canvas.height);
+    $scope.styled = false;
+  }
+
+  $scope.styled = false;
+  $scope.styleMe = function() {
+    $scope.styled = true;
+    $scope.randomNumber = Math.floor((Math.random()*9)+1);
   }
 });

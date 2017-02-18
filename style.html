@@ -34,7 +34,7 @@
     <script src="js/angular.min.js"></script>
     <script src="js/angular/styleCamera.js"></script>
   </head>
-  <body id="header6">
+  <body id="header6" ng-app="styleCamera" ng-controller="cameraController">
     <div id="page-top"></div>
     <div class="outer-wrapper">
       <div class="header-wrap">
@@ -72,22 +72,21 @@
         <div class="row">
           <div class="col-xs-3">
             <div class="space90"></div>
-            <div ng-app="styleCamera" ng-controller="cameraController">
-              <ul class="features-left">
-                <h2>Photos</h2>
-                <video id="video" width="100%" autoplay ng-click="takePhoto()"></video>
-                <canvas id="canvas"></canvas>
+            <ul class="features-left">
+              <h2>Photos <a href="#" ng-click="clearPhotos()"><small>clear</small></a></h2>
+              <video id="video" width="100%" autoplay ng-click="takePhoto()"></video>
+              <canvas id="canvas"></canvas>
 
-                <li ng-repeat="photo in photos track by $index">
-                  <img src="{{photo}}" style="width: 100%;transform: scale(-1, 1)" ng-show="$index !== 0">
-                  <div class="space10"></div>
-                </li>
+              <li ng-repeat="photo in photos track by $index">
+                <img src="{{photo}}" style="width: 100%;transform: scale(-1, 1)" ng-show="$index !== 0">
+                <div class="space10"></div>
+              </li>
+            </ul>
 
-                <li id="style"><button class="btn">Style Me!</button></li>
-              </ul>
-            </div>
+            <button class="btn" ng-click="styleMe()">Style Me!</button>
           </div>
-          <div class="col-md-8">
+
+          <div class="col-md-8" ng-show="styled">
             <div class="space90"></div>
             <center>
               <h2 class="title">Recommendations</h2>
@@ -105,7 +104,7 @@
             <div class="col-md-4">
               <ul class="features-left">
                 <li>
-                  <img src="images/shop/1.jpg" class="img-responsive center-block" alt="">
+                  <img src="images/shop/{{randomNumber}}.jpg" class="img-responsive center-block" alt="">
                 </li>
               </ul>
             </div>
@@ -119,8 +118,9 @@
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="col-md-8">
+
+            <div class="clearfix"></div>
+
             <div class="space90"></div>
             <div class="col-md-4">
               <ul class="features-left">
@@ -135,7 +135,7 @@
             <div class="col-md-4">
               <ul class="features-left">
                 <li>
-                  <img src="images/shop/1.jpg" class="img-responsive center-block" alt="">
+                  <img src="images/shop/{{randomNumber - 1 || randomNumber + 1}}.jpg" class="img-responsive center-block" alt="">
                 </li>
               </ul>
             </div>
@@ -149,8 +149,9 @@
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="col-md-8">
+
+            <div class="clearfix"></div>
+
             <div class="space90"></div>
             <div class="col-md-4">
               <ul class="features-left">
@@ -171,7 +172,8 @@
         </div>
       </div>
     </div>
-    </div>
+  </body>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <!-- Plugins -->
@@ -197,5 +199,4 @@
     <script src="js/gmaps/greyscale.js"></script>
 
     <script src="js/main.js"></script>
-  </body>
 </html>
